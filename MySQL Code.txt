@@ -1,0 +1,374 @@
+create table soldier (
+		      soldierid varchar(20) Primary key,
+       		      sname varchar(20) not null,
+                      dob date not null,
+                      doj date not null,
+                      height int not null,
+                      weight int not null,
+                      gender char not null,
+                      district varchar(20) not null,
+                      regimentcode varchar(20),
+                      operationcode varchar(20),
+                      srank varchar(20) not null,
+		      foreign key(district) references location(district),
+                      foreign key (regimentcode) references regiment(regimentcode),
+                      foreign key (operationcode) references operation(operationcode),
+                      foreign key (srank) references salary(srank)
+                      );
+
+INSERT INTO soldier VALUES ("S01" , "Arjun Pratap" ,'12-12-1987' , '13-03-2009' , 176 , 72 , 'M' , "Bhopal" , "R02" , "O03", "Colonel");
+INSERT INTO soldier VALUES ("S02" , "Saurabh Pandit" ,'15-02-1980' ,'09-12-2008' , 179 , 73 , 'M' , "Meerut" , "R02" , "O02", "Soldier");
+INSERT INTO soldier VALUES ("S03" , "Shubham Verma" ,'24-02-1990' , '15-04-2011' , 182 , 76 , 'M' , "Bhopal" , "R01" , "O01", "Soldier");
+INSERT INTO soldier VALUES ("S04", "Mayank Kumvat" ,'14-06-1978' ,'21-09-2011' , 163 , 69 , 'M' , "Almora" , "R03" , "O01", "Lieutenant");
+INSERT INTO soldier VALUES ("S05", "Satveer Thakur" ,'20-04-1980' ,'19-10-2004' ,162, 65, 'M' , "Jalandhar" , "R02" , "O03", "Major");
+INSERT INTO soldier VALUES ("S06" , "Hamid Ahmed" ,'10-06-1976' ,'24-02-2008' , 168 , 70 , 'M' , "Chandigarh" , "R01" , "O01", "Brigadier");
+INSERT INTO soldier VALUES ("S07" , "Ajay Singh" ,'12-04-1984' ,'08-07-2003' , 175 , 79 , 'M' , "Chandigarh" , "R04" , "O04", "Lieutenant");
+INSERT INTO soldier VALUES ("S08" , "Avantika Kulkarni" ,'26-04-1990' ,'18-08-2009' ,164 , 62 , 'F' , "Indore" , "R04" , "O02", "Soldier");
+INSERT INTO soldier VALUES ("S09" , "Abhishek Saxena" ,'12-05-1975' ,'16-05-2012' , 181 , 76 , 'M' , "Tehri" , "R01" , "O01", "Brigadier");
+INSERT INTO soldier VALUES ("S10" , "Rajveer Singh" ,'15-02-1968' ,'24-03-2000' , 173 , 70 , 'M' , "Allahabad" , "R03" , "O02", "Captain");
+INSERT INTO soldier VALUES ("S11" , "Karan Jagtap" ,'05-02-1988' ,'02-09-2011' , 167 , 70 , 'M' , "Allahabad" , "R04" , "O03", "Captain");
+INSERT INTO soldier VALUES ("S12" , "Vinay Kumar" ,'07-07-1972' ,'04-04-2012' , 169 , 65 , 'M' , "Meerut" , "R01" , "O04", "Colonel");
+INSERT INTO soldier VALUES ("S13" , "Rajat Talesra" ,'11-09-1976' ,'24-10-2007' , 172 , 76 , 'M' , "Patna" , "R02" , "O03", "Colonel");
+INSERT INTO soldier VALUES ("S14" , "Ankur Ranjan" ,'11-10-1964' ,'21-07-2002' , 169 , 64 , 'M' , "Almora" , "R03" , "O01", "Captain");
+INSERT INTO soldier VALUES ("S15" , "Disha Singh" ,'11-09-1983' ,'24-02-2008' , 165 , 65 , 'F' , "Lucknow" , "R04" , "O04", "Brigadier");
+INSERT INTO soldier VALUES ("S16" , "Niranjan Arya" ,'04-12-1971' ,'12-10-2010' , 171 , 69 , 'M' , "Lucknow" , "R02" , "O02", "Lieutenant");
+INSERT INTO soldier VALUES ("S17" , "Dheeru Sachdev" ,'11-01-1975' ,'30-12-2015' , 168 , 66 , 'M' , "Tehri" , "R03" , "O01", "Soldier");
+INSERT INTO soldier VALUES ("S18" , "Vipul Yadav" ,'05-06-1975' ,'31-01-2004' , 179 , 74 , 'M' , "Indore" , "R04" , "O03", "Major");
+INSERT INTO soldier VALUES ("S19" , "Brijmohan Singh" ,'25-11-1988' ,'12-02-2014' , 173 , 65 , 'M' , "Lucknow" , "R01" , "O04", "Soldier");
+INSERT INTO soldier VALUES ("S20" , "Harminder Kaur" ,'19-12-1971' ,'25-11-2015' , 165 , 62 , 'F' , "Patna" , "R02" , "O04", "Colonel");
+
+create table regiment (
+			regimentcode varchar(20) Primary key,
+			rname varchar(20) not null,
+                        hqcity varchar(20) not null,
+                        currstrength int not null,
+                        maxstrength int not null,
+                        commanderid varchar(20) not null
+                        );
+
+INSERT INTO regiment VALUES ("R01" , "Madras Regiment" , "Jalandhar" , 57 , 85 , "S12");
+INSERT INTO regiment VALUES ("R02" , "Rajput Regiment" , "Kanpur" , 61 , 100 , "S05");
+INSERT INTO regiment VALUES ("R03" , "Sikh Regiment" , "Chandigarh" , 75 , 120 , "S10");
+INSERT INTO regiment VALUES ("R04" , "Jat Regiment" , "Almora" , 51 , 95 , "S18");
+               
+
+create table weaponsinventory (
+				quantity int not null,
+                                regimentcode varchar(20) not null,
+                                weaponid varchar(20) not null,
+                                foreign key (regimentcode) references regiment (regimentcode),
+                                foreign key (weaponid) references weapon(weaponid)
+				);
+                            
+INSERT INTO weaponsinventory VALUES (12 ,"R01","W01");
+INSERT INTO weaponsinventory VALUES (8 ,"R01","W02");
+INSERT INTO weaponsinventory VALUES (6 ,"R01","W03");
+INSERT INTO weaponsinventory VALUES (8 ,"R01","W04");
+INSERT INTO weaponsinventory VALUES (7 ,"R01","W05");
+INSERT INTO weaponsinventory VALUES (5 ,"R01","W06");
+INSERT INTO weaponsinventory VALUES (4 ,"R01","W07");
+INSERT INTO weaponsinventory VALUES (3 ,"R01","W08");
+INSERT INTO weaponsinventory VALUES (8 ,"R01","W09");
+INSERT INTO weaponsinventory VALUES (4 ,"R01","W10");
+
+ 
+INSERT INTO weaponsinventory VALUES (15 ,"R02","W01");
+INSERT INTO weaponsinventory VALUES (10 ,"R02","W02");
+INSERT INTO weaponsinventory VALUES (5 ,"R02","W03");
+INSERT INTO weaponsinventory VALUES (8,"R02","W04");
+INSERT INTO weaponsinventory VALUES (6,"R02","W05");
+INSERT INTO weaponsinventory VALUES (4,"R02","W06");
+INSERT INTO weaponsinventory VALUES (6,"R02","W07");
+INSERT INTO weaponsinventory VALUES (8,"R02","W08");
+INSERT INTO weaponsinventory VALUES (4,"R02","W09");
+INSERT INTO weaponsinventory VALUES (3,"R02","W10");
+
+ 
+INSERT INTO weaponsinventory VALUES (20 ,"R03","W01");
+INSERT INTO weaponsinventory VALUES (10 ,"R03","W02");
+INSERT INTO weaponsinventory VALUES (9 ,"R03","W03");
+INSERT INTO weaponsinventory VALUES (5,"R03","W04");
+INSERT INTO weaponsinventory VALUES (6,"R03","W05");
+INSERT INTO weaponsinventory VALUES (7,"R03","W06");
+INSERT INTO weaponsinventory VALUES (8,"R03","W07");
+INSERT INTO weaponsinventory VALUES (10,"R03","W08");
+INSERT INTO weaponsinventory VALUES (4,"R03","W09");
+INSERT INTO weaponsinventory VALUES (5,"R03","W10");
+ 
+INSERT INTO weaponsinventory VALUES (16 ,"R04","W01");
+INSERT INTO weaponsinventory VALUES (8 ,"R04","W02");
+INSERT INTO weaponsinventory VALUES (10 ,"R04","W03");
+INSERT INTO weaponsinventory VALUES (8,"R04","W04");
+INSERT INTO weaponsinventory VALUES (6,"R04","W05");
+INSERT INTO weaponsinventory VALUES (6,"R04","W06");
+INSERT INTO weaponsinventory VALUES (8,"R04","W07");
+INSERT INTO weaponsinventory VALUES (4,"R04","W08");
+INSERT INTO weaponsinventory VALUES (8,"R04","W09");
+INSERT INTO weaponsinventory VALUES (5,"R04","W10");
+
+create table vehiclesinventory (
+				quantity int not null,
+                                regimentcode varchar(20) not null,
+                                vehicleid varchar(20) not null,
+				foreign key (regimentcode) references regiment (regimentcode),
+                                foreign key (vehicleid) references vehicle(vehicleid)
+				);
+
+INSERT INTO vehiclesinventory VALUES (5,"R01","V01");
+INSERT INTO vehiclesinventory VALUES (2,"R01","V03");
+INSERT INTO vehiclesinventory VALUES (8,"R01","V04");
+INSERT INTO vehiclesinventory VALUES (3,"R01","V05");
+
+INSERT INTO vehiclesinventory VALUES (3,"R02","V01");
+INSERT INTO vehiclesinventory VALUES (6,"R02","V08");
+INSERT INTO vehiclesinventory VALUES (4,"R02","V02");
+INSERT INTO vehiclesinventory VALUES (8,"R02","V06");
+
+INSERT INTO vehiclesinventory VALUES (2,"R03","V02");
+INSERT INTO vehiclesinventory VALUES (6,"R03","V03");
+INSERT INTO vehiclesinventory VALUES (8,"R03","V04");
+INSERT INTO vehiclesinventory VALUES (4,"R03","V06");
+
+INSERT INTO vehiclesinventory VALUES (3,"R04","V08");
+INSERT INTO vehiclesinventory VALUES (7,"R04","V04");
+INSERT INTO vehiclesinventory VALUES (6,"R04","V06");
+INSERT INTO vehiclesinventory VALUES (2,"R04","V03");
+
+                            
+create table equipmentsinventory (
+				quantity int not null,
+                                regimentcode varchar(20) not null,
+                                equipmentid varchar(20) not null,
+				foreign key (regimentcode) references regiment (regimentcode),
+                                foreign key (equipmentid) references equipment(equipmentid)
+				);
+
+INSERT INTO equipmentsinventory VALUES (54,"R01","E01");
+INSERT INTO equipmentsinventory VALUES (37,"R01","E02");
+INSERT INTO equipmentsinventory VALUES (46,"R01","E03");
+INSERT INTO equipmentsinventory VALUES (42,"R01","E04");
+INSERT INTO equipmentsinventory VALUES (40,"R01","E05");
+INSERT INTO equipmentsinventory VALUES (42,"R01","E06");
+
+INSERT INTO equipmentsinventory VALUES (44,"R02","E01");
+INSERT INTO equipmentsinventory VALUES (57,"R02","E02");
+INSERT INTO equipmentsinventory VALUES (56,"R02","E03");
+INSERT INTO equipmentsinventory VALUES (62,"R02","E04");
+INSERT INTO equipmentsinventory VALUES (40,"R02","E05");
+INSERT INTO equipmentsinventory VALUES (72,"R02","E06");
+
+INSERT INTO equipmentsinventory VALUES (44,"R03","E01");
+INSERT INTO equipmentsinventory VALUES (32,"R03","E02");
+INSERT INTO equipmentsinventory VALUES (39,"R03","E03");
+INSERT INTO equipmentsinventory VALUES (60,"R03","E04");
+INSERT INTO equipmentsinventory VALUES (45,"R03","E05");
+INSERT INTO equipmentsinventory VALUES (35,"R03","E06");
+
+INSERT INTO equipmentsinventory VALUES (50,"R04","E01");
+INSERT INTO equipmentsinventory VALUES (30,"R04","E02");
+INSERT INTO equipmentsinventory VALUES (25,"R04","E03");
+INSERT INTO equipmentsinventory VALUES (58,"R04","E04");
+INSERT INTO equipmentsinventory VALUES (27,"R04","E05");
+INSERT INTO equipmentsinventory VALUES (38,"R04","E06");
+
+create table weapon (
+		    weaponid varchar(20) Primary key,
+                    wname varchar(20) not null,
+                    wtype varchar(20) not null
+                    );
+
+INSERT INTO weapon VALUES ("W01", "Glock 17" , "Pistol");
+INSERT INTO weapon VALUES ("W02", "SPAS 15" , "Shotgun");
+INSERT INTO weapon VALUES ("W03", "Micro UZI" , "SMG");
+INSERT INTO weapon VALUES ("W04", "MP5" , "SMG");
+INSERT INTO weapon VALUES ("W05", "Steyr AUG" , "AR");
+INSERT INTO weapon VALUES ("W06", "AKM" , "AR");
+INSERT INTO weapon VALUES ("W07", "Barrett M95" , "Sniper Rifle");
+INSERT INTO weapon VALUES ("W08", "M4A1 Carbine" , "AR");
+INSERT INTO weapon VALUES ("W09", "Steyr SSG" , "Sniper Rifle");
+INSERT INTO weapon VALUES ("W10", "M249" , "Machine Gun");
+
+                    
+create table vehicle (
+		    vehicleid varchar(20) Primary key,
+                    vname varchar(20) not null,
+                    vtype varchar(20) not null,
+                    fueltype varchar(20) not null,
+                    manyear int not null
+                    );
+
+INSERT INTO vehicle VALUES("V01","Force Gurkha","Ligh Utility","Petrol",2001);
+INSERT INTO vehicle VALUES("V02","AL Stallion","Carrier","Diesel",2008);
+INSERT INTO vehicle VALUES("V03","Sisu Nasu","All Terrain Transport","Diesel",1999);
+INSERT INTO vehicle VALUES("V04","Isuzu F","Carrier","Diesel",2007);
+INSERT INTO vehicle VALUES("V05","Arjun MBT","Battle Tank","Petrol",1990);
+INSERT INTO vehicle VALUES("V06","Ajeya","Battle Tank","Diesel",1996);
+INSERT INTO vehicle VALUES("V07","Sarath","Infantry combat","Diesel",2011);
+INSERT INTO vehicle VALUES("V08","Mazda R1","Light Utility","Petrol",2009);
+
+create table equipment (
+		    equipmentid varchar(20) Primary key,
+                    ename varchar(20) not null,
+                    etype varchar(20) not null
+                    );
+
+
+INSERT INTO equipment VALUES("E01","MKU Helmet","Protective gear");
+INSERT INTO equipment VALUES("E02","Kevlar Vest","Protective gear");
+INSERT INTO equipment VALUES("E03","Nigh Vision Goggle","Utility");
+INSERT INTO equipment VALUES("E04","HE Grenade","Utility");
+INSERT INTO equipment VALUES("E05","Health Pack","Medicine");
+INSERT INTO equipment VALUES("E06","First Aid Kit","Medicine");
+
+create table honors (
+		    medalid varchar(20) not null,
+                    soldierid varchar(20) not null,
+		    foreign key (medalid) references medals(medalid),
+                    foreign key (soldierid) references soldier (soldierid)
+                    );
+
+INSERT INTO honors VALUES ("M03","S04");
+INSERT INTO honors VALUES ("M06","S10");
+INSERT INTO honors VALUES ("M01","S01");                    
+INSERT INTO honors VALUES ("M02","S12");                    
+INSERT INTO honors VALUES ("M03","S05");                   
+INSERT INTO honors VALUES ("M01","S10");                    
+INSERT INTO honors VALUES ("M03","S18");                    
+INSERT INTO honors VALUES ("M02","S19");                    
+INSERT INTO honors VALUES ("M05","S10");                    
+INSERT INTO honors VALUES ("M04","S18");                   
+INSERT INTO honors VALUES ("M01","S18");                    
+INSERT INTO honors VALUES ("M06","S01");                    
+INSERT INTO honors VALUES ("M02","S03");                    
+INSERT INTO honors VALUES ("M05","S05");                    
+INSERT INTO honors VALUES ("M01","S07");                    
+INSERT INTO honors VALUES ("M04","S08");                    
+INSERT INTO honors VALUES ("M02","S09");                    
+INSERT INTO honors VALUES ("M04","S20");                    
+INSERT INTO honors VALUES ("M06","S16");                    
+INSERT INTO honors VALUES ("M05","S04");                    
+INSERT INTO honors VALUES ("M06","S03");                    
+INSERT INTO honors VALUES ("M02","S15");                    
+INSERT INTO honors VALUES ("M03","S03");                    
+
+create table medals (
+		    medalid varchar(20) primary key,
+                    medalname varchar(20) not null
+                    );
+
+INSERT INTO medals VALUES ("M01","Param Vir Chakra");
+INSERT INTO medals VALUES ("M02","Ashok Chakra");
+INSERT INTO medals VALUES ("M03","Kirti Chakra");
+INSERT INTO medals VALUES ("M04","Sarvottam Yudh Seva Medal");
+INSERT INTO medals VALUES ("M05","Uttam Yudh Seva Medal");
+INSERT INTO medals VALUES ("M06","Sena Medal");
+                    
+create table posting (
+		    pfrom date not null,
+		    ptill date not null,
+                    soldierid varchar(20) not null,
+                    district varchar(20) not null,
+                    foreign key(soldierid) references soldier(soldierid),
+                    foreign key(district) references location(district)
+		  );
+
+INSERT INTO posting VALUES ('23-10-2017','22-10-2020',"S01","Lucknow");
+INSERT INTO posting VALUES ('13-09-2015','24-10-2020',"S02","Almora");
+INSERT INTO posting VALUES ('02-07-2016','10-08-2020',"S03","Tehri");
+INSERT INTO posting VALUES ('11-11-2017','12-11-2020',"S04","Meerut");
+INSERT INTO posting VALUES ('07-10-2014','09-11-2020',"S05","Patna");
+INSERT INTO posting VALUES ('18-12-2017','26-12-2020',"S06","Meerut");
+INSERT INTO posting VALUES ('12-06-2017','15-07-2020',"S07","Allahabad");
+INSERT INTO posting VALUES ('13-10-2012','20-11-2020',"S08","Patna");
+INSERT INTO posting VALUES ('20-12-2015','29-09-2020',"S08","Lucknow");
+INSERT INTO posting VALUES ('09-11-2014','06-06-2020',"S09","Lucknow");
+INSERT INTO posting VALUES ('01-01-2013','07-09-2020',"S10","Tehri");
+INSERT INTO posting VALUES ('02-10-2015','15-09-2020',"S10","Jalandhar");
+INSERT INTO posting VALUES ('08-02-2015','12-07-2020',"S11","Chandigarh");
+INSERT INTO posting VALUES ('16-05-2013','09-11-2015',"S12","Bhopal");
+INSERT INTO posting VALUES ('01-12-2015','19-05-2020',"S12","Allahabad");
+INSERT INTO posting VALUES ('28-04-2015','17-10-2020',"S13","Jalandhar");
+INSERT INTO posting VALUES ('12-12-2016','19-06-2020',"S14","Lucknow");
+INSERT INTO posting VALUES ('19-07-2012','18-05-2014',"S15","Bhopal");
+INSERT INTO posting VALUES ('21-06-2014','08-08-2020',"S15","Almora");
+INSERT INTO posting VALUES ('16-07-2011','12-02-2013',"S16","Chandigarh");
+INSERT INTO posting VALUES ('21-03-2013','12-04-2017',"S16","Tehri");
+INSERT INTO posting VALUES ('11-05-2017','04-06-2020',"S16","Lucknow");
+INSERT INTO posting VALUES ('24-10-2015','15-06-2020',"S17","Meerut");
+INSERT INTO posting VALUES ('16-08-2013','11-11-2020',"S18","Almora");
+INSERT INTO posting VALUES ('21-04-2015','15-07-2020',"S19","Allahabad");
+INSERT INTO posting VALUES ('16-01-2016','12-11-2020',"S20","Lucknow");
+
+         
+create table location (
+		    district varchar(20) primary key,
+                    state varchar(20) not null,
+                    country varchar(20) not null
+                    );
+
+INSERT INTO location VALUES( "Lucknow", "Uttar Pradesh", "India"); 
+INSERT INTO location VALUES("Bhopal", "Madhya Pradesh", "India");
+INSERT INTO location VALUES("Meerut", "Uttar Pradesh", "India");
+INSERT INTO location VALUES("Patna", "Bihar", "India");
+INSERT INTO location VALUES("Jalandhar", "Punjab", "India");
+INSERT INTO location VALUES("Almora", "Uttarakhand", "India");
+INSERT INTO location VALUES("Chandigarh", "Punjab", "India");
+INSERT INTO location VALUES("Tehri", "Uttarakhand", "India");
+INSERT INTO location VALUES("Indore", "Madhya Pradesh", "India");
+INSERT INTO location VALUES("Allahabad", "Uttar Pradesh", "India");
+
+create table family (
+		    fathername varchar(20) not null,
+                    soldierid varchar(20) not null,
+                    children int not null,
+                    maritalstatus char not null,
+                    foreign key (soldierid) references soldier (soldierid),
+                    primary key(soldierid, fathername)
+                    );
+
+INSERT INTO family VALUES ("Kuwar Pratap","S01",1,'Y');
+INSERT INTO family VALUES ("Ashok Pandit","S02",0,'N');
+INSERT INTO family VALUES ("Rajeev Verma","S03",0,'Y');
+INSERT INTO family VALUES ("Manas Kumvat","S04",0,'N');
+INSERT INTO family VALUES ("Nilesh Thakur","S05",0,'Y');
+INSERT INTO family VALUES ("Ajaz Ahmed","S06",0,'N');
+INSERT INTO family VALUES ("Shantanu Singh","S07",2,'Y');
+INSERT INTO family VALUES ("Mahesh Kulkarni","S08",2,'Y');
+INSERT INTO family VALUES ("Prateek Saxena","S09",2,'Y');
+INSERT INTO family VALUES ("Aman Singh","S10",3,'Y');
+INSERT INTO family VALUES ("Arjun Jagtap","S11",1,'Y');
+INSERT INTO family VALUES ("Vijay Kumar","S12",0,'N');
+INSERT INTO family VALUES ("Naman Talesra","S13",0,'Y');
+INSERT INTO family VALUES ("Aditya Ranjan","S14",1,'Y');
+INSERT INTO family VALUES ("Akbar Singh","S15",3,'Y');
+INSERT INTO family VALUES ("Dhirendra Arya","S16",0,'N');
+INSERT INTO family VALUES ("Harshvardhan Sachdev","S17",2,'Y');
+INSERT INTO family VALUES ("Umesh Yadav","S18",1,'Y');
+INSERT INTO family VALUES ("Balkishore Singh","S19",1,'Y');
+INSERT INTO family VALUES ("Jaspreet Kaur","S20",2,'Y');
+
+create table operation (
+			operationcode varchar(20) primary key,
+                        oname varchar(20) not null,
+                        startdate date not null,
+                        enddate date not null,
+                        outcome varchar(20) not null
+                        );
+
+INSERT INTO operation VALUES ("O01","Operation Sahyog",'24-09-2018','05-11-2018',"Successful");
+INSERT INTO operation VALUES ("O02","Operation Calm Down",'11-05-2016','02-08-2016',"Successful");
+INSERT INTO operation VALUES ("O03","Operation All Out",'13-06-2015','22-07-2015',"Unsuccessful");
+INSERT INTO operation VALUES ("O04","Operation Maitri",'02-02-2015','07-05-2015',"Successful");
+ 
+                        
+create table salary(
+		    sRank varchar(20) Primary key, 
+                    salary INT not null
+		   );
+
+INSERT INTO salary VALUES("Soldier", 25000);
+INSERT INTO salary VALUES("Major", 58000);
+INSERT INTO salary VALUES("Captain", 47500);
+INSERT INTO salary VALUES("Colonel", 65000);
+INSERT INTO salary VALUES("Brigadier", 73000);
+INSERT INTO salary VALUES("Lieutenant", 35000);
